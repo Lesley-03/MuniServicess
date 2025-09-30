@@ -1,0 +1,54 @@
+﻿@model MuniServices.Models.Issue
+@{
+    ViewData["Title"] = "Report Issue";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Report a Municipal Issue</h4>
+        </div>
+        <div class="card-body">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">Please correct the errors below.</div>
+            }
+            <form asp-controller="Issues" asp-action="Submit" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label asp-for="Location" class="form-label"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Category" class="form-label"></label>
+                    <select asp-for="Category" class="form-select">
+                        <option value="">-- Select Category --</option>
+                        <option>Sanitation</option>
+                        <option>Roads</option>
+                        <option>Electricity</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="media" class="form-label">Attach Media</label>
+                    <input type="file" name="media" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-success">Submit Issue</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

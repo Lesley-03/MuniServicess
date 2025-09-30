@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm border-success">
+        <div class="card-header bg-success text-white text-center">
+            <h2 class="mb-0">Welcome to MuniServices</h2>
+        </div>
+        <div class="card-body text-center">
+            <img src="~/images/muniservices.png" alt="MuniServices Logo" style="height: 100px;" class="mb-3" />
+
+            <p class="lead">Report municipal issues quickly and help improve your community.</p>
+
+            <div class="d-grid gap-3 col-md-6 mx-auto mt-4">
+                <a class="btn btn-success btn-lg" asp-controller="Issues" asp-action="Report">Report an Issue</a>
+                <button class="btn btn-outline-secondary btn-lg" disabled>Local Events and Announcements (Coming Soon)</button>
+                <button class="btn btn-outline-secondary btn-lg" disabled>Service Request Status (Coming Soon)</button>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <img src="~/images/dangerous-roads.jpg" alt="Roads" class="img-fluid rounded shadow-sm" />
+                    <p class="mt-2">Fix potholes and road damage</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/images/sanitation.jpg" alt="Sanitation" class="img-fluid rounded shadow-sm" />
+                    <p class="mt-2">Improve sanitation services</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="~/images/electricity.jpg" alt="Electricity" class="img-fluid rounded shadow-sm" />
+                    <p class="mt-2">Report electricity outages</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

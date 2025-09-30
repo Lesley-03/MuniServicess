@@ -1,0 +1,46 @@
+﻿@model MuniServices.Models.Issue
+@{
+    ViewData["Title"] = "Submit Feedback";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Feedback for Issue #@Model.ID</h4>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Issues" asp-action="Feedback" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="ID" />
+
+                <div class="mb-3">
+                    <label class="form-label">Location</label>
+                    <input asp-for="Location" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <input asp-for="Category" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Current Status</label>
+                    <input asp-for="Status" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Feedback" class="form-label"></label>
+                    <textarea asp-for="Feedback" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Feedback" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success">Submit Feedback</button>
+                <a asp-action="Status" class="btn btn-secondary">Back to Issues</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,63 @@
+﻿@model List<MuniServices.Models.Issue>
+@{
+    ViewData["Title"] = "Submitted Issues";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Submitted Issues</h4>
+        </div>
+        <div class="card-body">
+
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success">@TempData["Message"]</div>
+            }
+
+            <table class="table table-bordered table-striped mt-3">
+                <thead class="table-success">
+                    <tr>
+                        <th>ID</th>
+                        <th>Location</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Media</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var issue in Model)
+                    {
+                        <tr>
+                            <td>@issue.ID</td>
+                            <td>@issue.Location</td>
+                            <td>@issue.Category</td>
+                            <td>@issue.Status</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(issue.MediaPath))
+                                {
+                                    <img src="@issue.MediaPath" alt="Issue Image" style="height: 60px;" class="rounded shadow-sm" />
+                                }
+                                else
+                                {
+                                    <span class="text-muted">No media</span>
+                                }
+                            </td>
+                            <td>
+                                @if (issue.Status != "Resolved")
+                                {
+                                    <a class="btn btn-sm btn-outline-success" asp-action="Feedback" asp-route-id="@issue.ID">Give Feedback</a>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">Feedback Submitted</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
